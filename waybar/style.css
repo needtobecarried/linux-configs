@@ -1,0 +1,148 @@
+@import "/home/briar/.cache/wal/colors-waybar.css";
+
+*{
+/* General taskbar font, I like maple mono ^-^*/
+font-family: Maple Mono;
+border-radius: 8;
+font-size: 14px;
+padding: 0px;
+background: transparent;
+}
+
+window#waybar {
+    /* Linear gradients are used because it makes less harsh rounded border radius, gtk bug :p */
+    background-image: linear-gradient(to bottom, @background /*#141216*/ 100%);
+    border-radius: 14px;
+    padding: 0px;
+    border-style: none;
+}
+
+#battery,
+#network,
+#clock,
+#custom-applauncher,
+#tray,
+#workspaces,
+#wireplumber,
+#mpris 
+{
+background-image: linear-gradient(to bottom, @color3 /*#27232b*/ 100%);
+
+margin: 6px;
+margin-right: 6px;
+padding: 2px 2px;
+border-radius: 8px;
+color: @color2;
+
+border-style: none;
+transition-duration: 120ms;
+}
+
+#clock {
+margin-right: 6px;
+font-weight: bold;
+}
+#network {
+font-weight: bold;
+}
+
+#pulseaudio:hover {
+background-image: linear-gradient(to bottom, #ac82e9 100%);
+color: #141216;
+transition-duration: 120ms;
+}
+
+#custom-applauncher {
+font-weight: bold;
+transition-duration: 120ms;
+}
+#custom-applauncher:hover {
+background-image: linear-gradient(to bottom, @color2 100%);
+color: @color3;
+transition-duration: 120ms;
+}
+
+#tray menu {
+background-color: #141216;
+color: @color2;
+padding: 6px;
+}
+#tray menu menuitem {
+background-image: linear-gradient(to bottom, @background 100%);
+
+margin: 3px;
+color: @color2;
+border-radius: 4px;
+border-style: solid;
+border-color: @background;
+}
+#tray menu menuitem:hover {
+background-image: linear-gradient(to bottom, @background 100%);
+color: #ac82e9;
+font-weight: bold;
+}
+
+#workspaces button {
+transition-duration: 100ms;
+all: initial;
+min-width: 0;
+font-weight: bold;
+color: @color7;
+margin-right: 0.2cm;
+margin-left: 0.2cm;
+}
+
+#workspaces button:hover {
+transition-duration: 120ms;
+color: #8f56e1;
+}
+#workspaces button.focused {
+color: @color2;
+font-weight: bold;
+}
+#workspaces button.active {
+color: @color2;
+font-weight: bold;
+}
+#workspaces button.urgent {
+color: #fcb167;
+}
+
+#battery {
+ background-color: #222222;
+ color: #91ED91;
+ font-weight: bold;
+}
+#battery.warning,
+#battery.critical,
+#battery.urgent {
+color: #fc4649;
+background-color: #1d2021;
+font-weight: bold;
+}
+
+#mpris {
+color: @color2;
+background-color: #222222;
+font-weight: bold;
+}
+
+#wireplumber {
+color: @color2;
+background-color: #222222;
+font-weight: bold;
+}
+
+#custom-notification {
+color: @color2;
+background-color: @color3;
+margin-right: 5px;
+margin-top: 6px;
+margin-bottom: 6px;
+border-radius: 8px;
+padding: 4px;
+}
+#custom-notification:hover {
+background: @color2;
+color: @color3;
+}

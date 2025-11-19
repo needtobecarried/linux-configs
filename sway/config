@@ -1,0 +1,293 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+#pwyal16
+		include ~/.cache/wal/colors-sway
+		output * background $wallpaper fill
+
+
+### Variables
+#
+# Logo key
+set $mod Mod4
+# Your preferred terminal emulator
+set $term ghostty
+# Your preferred application launcher
+set $menu vicinae
+#set $menu pgrep rofi -show drun >/dev/null 2>&1 && killall rofi -show drun|| rofi -show drun
+# Your preferred file manager
+set $filemanager dolphin
+# Your preferred browser
+set $browser firefox
+# swaync
+set $notifications swaync-client -t
+#ticktick
+set $todo com.ticktick.TickTick
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+output * bg /home/briar/Pictures/purpleshed.jpg fill
+#
+# Example configuration:
+#
+output eDP-1 resolution 2256x1504@59.999Hz position 1706 0
+output eDP-1 scale 1.5
+output 'Shenzhen KTC Technology Group H32T13        Unknown' resolution 2560x1440@60.00Hz position 0 0
+output 'Shenzhen KTC Technology Group H32T13        Unknown' scale 1.5
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+#
+# Example configuration:
+#
+ exec swayidle -w \
+          timeout 600 'swaylock -f -c 000000' \
+          timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+          before-sleep 'swaylock -f -c 000000'
+
+# lock the screen
+bindsym $mod+l exec swaylock -f -c 000000
+
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+### Input configuration
+#
+# Example configuration:
+#
+   input type:touchpad {
+       dwt enabled
+       tap enabled
+       natural_scroll enabled
+       middle_emulation enabled
+   }
+#
+   input type:keyboard {
+       xkb_layout "latam,us"
+		xkb_options "grp:alt_shift_toggle"
+   }
+#
+# You can also configure each device individually.
+# Read `man 5 sway-input` for more information about this section.
+
+### Key bindings
+#
+# Basics:
+#
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+q kill
+
+    # Start your launcher
+    bindsym $mod+d exec $menu
+
+		# Start browser
+	bindsym $mod+b exec $browser
+
+		#Start a filemanager
+	bindsym $mod+Shift+Return exec $filemanager
+
+		#Toggle swaync
+	bindsym $mod+n exec $notifications
+
+		#start ticktick
+	bindsym $mod+t exec $todo
+
+		#start zen
+	bindsym $mod+z exec app.zen_browser.zen
+
+		#start discord
+	bindsym $mod+m exec com.discordapp.Discord
+	
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
+		#focus on new window
+   focus_on_window_activation focus
+
+		#spawn popups as floating
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [app_id=”firefox”] fullscreen toggle
+
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+h or $mod+v, for horizontal and vertical splits respectively.
+    bindsym $mod+h splith
+    bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+#
+# Scratchpad:
+#
+    # Sway has a "scratchpad", which is a bag of holding for windows.
+    # You can send windows there and get them back later.
+
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show
+	scratchpad_minimize enable
+#
+# Resizing containers:
+#
+mode "resize" {
+    # With arrow keys
+    bindsym Left resize grow width 10px
+    bindsym Down resize shrink height 10px
+    bindsym Up resize grow height 10px
+    bindsym Right resize shrink width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+#
+# Utilities:
+#
+    # Special keys to adjust audio via playerctl and wpctl
+    bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_SINK@ toggle
+    bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_SINK@ 5%-
+    bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume --limit 1.0 @DEFAULT_SINK@ 5%+
+	bindsym --locked XF86AudioNext exec playerctl --all-players next
+	bindsym --locked XF86AudioPrev exec playerctl --all-players previous
+	bindsym --locked XF86AudioPlay exec playerctl --all-players play-pause
+#  boot executes
+	exec wpctl 25304 set-volume 0%
+	exec WirePlumber 22096 set-volume 0% 
+	exec wayland-pipewire-idle-inhibit
+	exec mpDris2
+	exec vicinae server
+	exec swaync
+#  Special keys to adjust brightness via brightnessctl
+    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+#
+# Status Bar:
+#
+bar {
+	swaybar_command waybar	
+    }
+
+
+# ===================== BORDERS & GAPS ============================
+
+corner_radius 8
+# Gaps between windows
+gaps inner 4px
+gaps outer 4px
+
+# Border width, I prefer THIN borders ^-^
+default_border pixel 4px
+default_floating_border pixel 4px
+
+
+# The border colors:
+
+#                       border    bg    text    ind     child border
+client.focused          $color2 $color0 $color7 $color2 $color2
+client.focused_inactive $color6 $color0 $color7 $color6 $color5
+client.unfocused        $color6 $color0 $color7 $color6 $color5
+client.urgent           $color9 $color0 $color7 $color2 $color9
+client.placeholder      $color6 $color0 $color7 $color6 $color5
+
+# ===================== SCREENSHOTS ===============================
+# There's a few different ways to handle screenshots in an
+# easy way, I've decided to use a combination of three apps:
+# grim, slurp, and swappy. Feel free to use a different screenshot
+# solution.
+
+
+#bindsym $mod+Shift+s exec "QT_QPA_PLATFORM=xcb flameshot gui"
+bindsym $mod+Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%Y%m%d-%H%M%S').png
+#
+#No titlebars
+# 
+for_window [title="^.*"] title_format ""
+# =================================================================
+
+include /etc/sway/config.d/*
