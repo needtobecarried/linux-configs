@@ -30,12 +30,12 @@ set $todo com.ticktick.TickTick
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/briar/Pictures/purpleshed.jpg fill
+output * bg /home/briar/Pictures/wallpapers/purpleshed.jpg fill
 #
 # Example configuration:
 #
 output eDP-1 resolution 2256x1504@59.999Hz position 1706 0
-output eDP-1 scale 1.5
+output eDP-1 scale 2
 output 'Shenzhen KTC Technology Group H32T13        Unknown' resolution 2560x1440@60.00Hz position 0 0
 output 'Shenzhen KTC Technology Group H32T13        Unknown' scale 1.5
 #
