@@ -24,7 +24,7 @@ window#waybar {
 #tray,
 #workspaces,
 #wireplumber,
-#mpris 
+#custom-ScrollMPRIS 
 {
 background-image: linear-gradient(to bottom, @color3 /*#27232b*/ 100%);
 
@@ -121,10 +121,13 @@ background-color: #1d2021;
 font-weight: bold;
 }
 
-#mpris {
+#custom-ScrollMPRIS {
 color: @color2;
 background-color: #222222;
 font-weight: bold;
+padding-right: 1px;
+padding-left: 1px;
+min-width:190px;
 }
 
 #wireplumber {

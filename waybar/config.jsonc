@@ -11,7 +11,7 @@
   "modules-left": [
     "sway/workspaces",
 	"tray",
-	"mpris"
+	"custom/ScrollMPRIS"
   ],
   "modules-center": [
     "custom/applauncher"
@@ -50,18 +50,33 @@
     "tooltip": false
   },
 
-    "mpris": {
-        "format": "{title}" ,
-        "on-click": "playerctl play-pause",
-		"tooltip": false,
-		"max-length": 30,
-    },
+//    "mpris": {
+//        "format": "{title}" ,
+//        "on-click": "playerctl play-pause",
+//		"tooltip": false,
+//		"max-length": 30,
+//    },
+"custom/ScrollMPRIS": {
+		"return-type": "json",
+		"exec": "ScrollMPRIS -s 50 -w 25 --scroll wrapping --format '{title} - {artist} - {album}' --no-icon --no-status-icon --freeze",
+		"escape": true,
+		"on-click": "playerctl play-pause",
+		"tooltip": false
+},
 
 	"wireplumber": {
 		"format": "{icon} {volume}%",
         "format-muted": " ",
         "format-icons": ["", " ", "  "],
-		"max-volume": 100
+		"max-volume": 100,
+		"on-click-right": "wpctl set-mute @DEFAULT_SINK@ toggle",
+<<<<<<< HEAD
+		"on-click": "./toggle_audio_output.sh"
+
+
+=======
+		"on-click": "eww open audio_menu --toggle --config ~/.config/eww/aud_men"
+>>>>>>> fbfd8c8 (burp)
 	},
 
   "battery": {
@@ -73,9 +88,11 @@
     "format": "{icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
     "format-plugged": "󰂄 {capacity}%",
-    "format-alt": "{icon} {time}",
     "format-full": "󱈑 {capacity}%",
-    "format-icons": ["󱊡","󱊢","󱊣"]
+    "format-icons": ["󱊡","󱊢","󱊣"],
+    "on-click": "powerprofilesctl set power-saver", // Left click
+    "on-click-right": "powerprofilesctl set balanced", // Right click
+    "on-click-middle": "powerprofilesctl set performance" // Middle click
   },
 
   "custom/notification": {

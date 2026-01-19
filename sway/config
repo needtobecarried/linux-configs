@@ -25,17 +25,17 @@ set $browser firefox
 # swaync
 set $notifications swaync-client -t
 #ticktick
-set $todo com.ticktick.TickTick
+set $todo ticktick
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/briar/Pictures/purpleshed.jpg fill
+output * bg /home/briar/Pictures/wallpapers/purpleshed.jpg fill
 #
 # Example configuration:
 #
 output eDP-1 resolution 2256x1504@59.999Hz position 1706 0
-output eDP-1 scale 1.5
+output eDP-1 scale 2
 output 'Shenzhen KTC Technology Group H32T13        Unknown' resolution 2560x1440@60.00Hz position 0 0
 output 'Shenzhen KTC Technology Group H32T13        Unknown' scale 1.5
 #
@@ -105,7 +105,7 @@ bindsym $mod+l exec swaylock -f -c 000000
 	bindsym $mod+z exec app.zen_browser.zen
 
 		#start discord
-	bindsym $mod+m exec com.discordapp.Discord
+	bindsym $mod+m exec discord
 	
 
     # Drag floating windows by holding down $mod and left mouse button.
@@ -121,13 +121,14 @@ bindsym $mod+l exec swaylock -f -c 000000
 		#focus on new window
    focus_on_window_activation focus
 
-		#spawn popups as floating
+		#window rules
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="bubble"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [app_id=”firefox”] fullscreen toggle
+for_window [class="zoom"] floating enable
 
 
     # Exit sway (logs you out of your Wayland session)
@@ -178,8 +179,8 @@ for_window [app_id=”firefox”] fullscreen toggle
 #
     # You can "split" the current object of your focus with
     # $mod+h or $mod+v, for horizontal and vertical splits respectively.
-    bindsym $mod+h splith
-    bindsym $mod+v splitv
+    bindsym $mod+h splitv
+    bindsym $mod+v splith
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
@@ -242,6 +243,8 @@ bindsym $mod+r mode "resize"
 	exec mpDris2
 	exec vicinae server
 	exec swaync
+	exec --no-startup-id discord --start-minimized
+	exec_always autotiling
 #  Special keys to adjust brightness via brightnessctl
     bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
@@ -254,7 +257,7 @@ bar {
     }
 
 
-# ===================== BORDERS & GAPS ============================
+# ===================== BORDERS, GAPS, & RADIUS ============================
 
 corner_radius 8
 # Gaps between windows
